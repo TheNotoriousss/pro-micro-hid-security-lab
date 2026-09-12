@@ -1,25 +1,55 @@
 # Hardware
 
-## Controller
+## Pro Micro
 
-The project uses an ATmega32U4-based Pro Micro board.
+This project uses a Pro Micro-compatible development board built around the
+ATmega32U4 microcontroller.
 
-The ATmega32U4 is useful for this project because it provides native USB
-support, allowing the board to present itself to a host as a USB HID device.
+The ATmega32U4 is particularly useful for HID research because it provides
+native USB functionality. This allows the microcontroller to communicate
+with a host computer as a USB Human Interface Device (HID).
 
-## Connection
+## Hardware Specifications
 
-Connect the Pro Micro to the laboratory computer using a USB data cable.
+| Component | Specification |
+|---|---|
+| Development board | Pro Micro |
+| Microcontroller | ATmega32U4 |
+| USB interface | Micro-USB |
+| HID capability | Native USB HID |
+| Primary HID device | Keyboard |
+| Firmware environment | Arduino-compatible |
 
-## Important Characteristics
+## Why ATmega32U4?
 
-- MCU: ATmega32U4
-- USB: Micro-B
-- Interface used by this project: USB HID keyboard
-- Firmware environment: Arduino-compatible development environment
+Unlike many basic Arduino boards that rely on a separate USB-to-serial
+interface, the ATmega32U4 has native USB support.
 
-## Board Configuration
+This makes it possible for firmware to implement USB device classes such as
+HID.
 
-Use the board configuration that successfully programs the Pro Micro in your
-Arduino IDE. Record the exact working configuration in the project notes once
-it has been verified.
+For this project, the important consequence is that the board can enumerate
+as a keyboard when connected to a compatible host.
+
+## USB HID Architecture
+
+```text
+┌─────────────────────────────┐
+│        Pro Micro            │
+│                             │
+│       ATmega32U4            │
+│                             │
+│     ┌─────────────────┐     │
+│     │   USB HID       │     │
+│     │    Keyboard     │     │
+│     └────────┬────────┘     │
+└──────────────┼──────────────┘
+               │
+               │ USB
+               ▼
+┌─────────────────────────────┐
+│       Host Computer         │
+│                             │
+│  Windows 10 / Windows 11    │
+│        Kali Linux           │
+└─────────────────────────────┘
