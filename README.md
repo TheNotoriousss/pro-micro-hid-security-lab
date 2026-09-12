@@ -1,21 +1,13 @@
 # Pro Micro HID Security Lab
 
-A security-research and hardware-learning project built around an
-ATmega32U4-based Pro Micro and its USB HID keyboard capabilities.
+A hardware security research project exploring USB HID keyboard emulation
+using an ATmega32U4-based Pro Micro.
 
-The project explores how a microcontroller can enumerate as a USB keyboard,
-generate controlled keyboard input, and interact with login interfaces in
-isolated, authorized laboratory environments.
+The project investigates how a microcontroller can enumerate as a USB
+keyboard and generate controlled keyboard input on different operating
+systems.
 
-## Project Goals
-
-- Learn USB HID behavior with the ATmega32U4.
-- Understand keyboard emulation from a microcontroller.
-- Study timing and focus behavior on different operating systems.
-- Build reproducible security-lab demonstrations.
-- Document hardware, firmware, testing methodology, and limitations.
-
-## Supported Lab Platforms
+## Research Targets
 
 - Windows 10
 - Windows 11
@@ -23,18 +15,24 @@ isolated, authorized laboratory environments.
 
 ## Hardware
 
-- ATmega32U4-based Pro Micro
-- Micro-USB cable
-- Host computer running one of the supported lab operating systems
+- Pro Micro
+- ATmega32U4
+- Micro-USB data cable
 
-## Repository Layout
+## Technologies
+
+- Arduino
+- ATmega32U4
+- USB HID
+- Keyboard emulation
+- Windows
+- Linux
+- Security testing
+
+## Project Structure
 
 ```text
 pro-micro-hid-security-lab/
-├── README.md
-├── LICENSE
-├── .gitignore
-│
 ├── firmware/
 │   ├── windows/
 │   └── kali/
@@ -44,19 +42,8 @@ pro-micro-hid-security-lab/
 │   ├── windows.md
 │   └── kali.md
 │
-└── images/
-```
-
-## Responsible Use
-
-This repository is intended for authorized security research, education, and
-isolated laboratory testing. Do not use the hardware or firmware to access
-accounts, devices, or systems without explicit authorization.
-
-The repository intentionally keeps credentials and other environment-specific
-configuration out of version control.
-
-## Status
-
-Early-stage project. Documentation and safe HID demonstrations are being
-developed before the repository is considered complete.
+├── images/
+│
+├── .gitignore
+├── LICENSE
+└── README.md
