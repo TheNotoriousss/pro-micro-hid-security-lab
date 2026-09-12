@@ -1,25 +1,39 @@
-# Windows Lab Notes
+# Windows Lab Testing
 
-The HID behavior has been tested in the project on:
+## Supported Versions
+
+The project has been tested with:
 
 - Windows 10
 - Windows 11
 
-The same general HID mechanism is used for both systems.
+The same ATmega32U4 HID firmware is used for both operating systems.
 
-## What Is Being Studied
+## Objective
 
-The Windows experiment focuses on:
+The Windows experiment demonstrates how an ATmega32U4-based Pro Micro can
+enumerate as a USB HID keyboard and generate keyboard input on a Windows
+system.
 
-1. USB HID enumeration.
-2. Keyboard input generation.
-3. Login-screen focus behavior.
-4. Timing differences between host states.
-5. Reliability of controlled keyboard events.
+The experiment also examines how timing and interface state affect HID input
+during controlled laboratory testing.
 
-Keep experiments inside a dedicated test account or isolated virtual machine.
+## Test Architecture
 
-## Configuration
-
-Do not commit real usernames, passwords, password lists, tokens, or other
-environment-specific secrets to the repository.
+```text
+┌───────────────────────┐
+│       Pro Micro       │
+│                       │
+│     ATmega32U4        │
+│                       │
+│      USB HID          │
+│      Keyboard         │
+└───────────┬───────────┘
+            │
+            │ USB
+            ▼
+┌───────────────────────┐
+│    Windows Host       │
+│                       │
+│   Windows 10 / 11     │
+└───────────────────────┘
