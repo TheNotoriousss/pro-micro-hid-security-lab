@@ -1,29 +1,31 @@
-# Kali Linux Lab Notes
+# Kali Linux Lab Testing
 
-The Kali experiment studies USB HID keyboard interaction with a controlled
-login environment.
+## Objective
 
-The intended lab workflow assumes that the test account username is known.
+The Kali Linux portion of the project explores USB HID keyboard interaction
+with a controlled Kali Linux login environment using an ATmega32U4-based
+Pro Micro.
 
-## Lab Model
+The test assumes that the username of the laboratory account is already
+known. The experiment focuses on interaction with the password input interface.
+
+## Test Architecture
 
 ```text
-Pro Micro / ATmega32U4
-        |
-        | USB HID
-        v
-Kali Linux test system
-        |
-        v
-Controlled login interface
-```
-
-## Configuration
-
-Keep the test username and any test credentials local to the laboratory
-environment. They should not be committed to Git.
-
-## Notes
-
-Login behavior can vary with the desktop environment and display/login manager.
-Document the exact environment used for reproducible experiments.
+┌───────────────────────┐
+│       Pro Micro       │
+│                       │
+│     ATmega32U4        │
+│                       │
+│      USB HID          │
+│      Keyboard         │
+└───────────┬───────────┘
+            │
+            │ USB
+            ▼
+┌───────────────────────┐
+│     Kali Linux        │
+│                       │
+│  Controlled Login     │
+│      Interface        │
+└───────────────────────┘
